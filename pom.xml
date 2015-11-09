@@ -1,0 +1,158 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.exam.csv</groupId>
+  <artifactId>csv</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>csv</name>
+  <url>http://maven.apache.org</url>
+
+	<parent>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-parent</artifactId>
+	      <version>1.2.3.RELEASE</version>
+	  </parent>
+	  
+	<dependencies>
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-web</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-test</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+    	<version>1.14.0</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1201-jdbc4</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.10.4</version>
+		</dependency>
+
+		<!-- スプリングセキュリティー追加 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+	    <dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>spring-security-taglibs</artifactId>
+	</dependency>
+
+
+	    <dependency>
+	    	<groupId>org.neo4j</groupId>
+	    	<artifactId>neo4j-cypher-compiler-2.1</artifactId>
+	    	<version>2.1.5</version>
+	    </dependency>
+	    <dependency>
+	    	<groupId>javax.inject</groupId>
+	    	<artifactId>javax.inject</artifactId>
+	    	<version>1</version>
+	    </dependency>
+	    <dependency>
+	    	<groupId>org.springframework.boot</groupId>
+	    	<artifactId>spring-boot-starter-batch</artifactId>
+	    </dependency>
+	    <dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+    		<version>2.4.4</version>
+		</dependency>
+	</dependencies>			  
+			  <build>
+
+	      <plugins>
+	          <plugin>
+	              <groupId>org.springframework.boot</groupId>
+	              <artifactId>spring-boot-maven-plugin</artifactId>
+
+	          </plugin>
+	      </plugins>
+	  </build>
+	  <properties>
+	    <java.version>1.8</java.version>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  </properties>
+	  
+	  <beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+      
+    <context:component-scan base-package="jp.lasaya.presentation">
+    </context:component-scan>
+     
+    <mvc:annotation-driven />
+
+    <mvc:interceptors>
+    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+    </mvc:interceptors>
+     
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+         
+      <bean id="viewResolver" class="jp.lasaya.framework.presentation.UserAgentViewResolver">
+        <property name="prefixRoot" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="cache" value="false"/>
+        <property name="defaultViewResourceDirectoryName" value="pc" />
+        <property name="iphoneViewResourceDirectoryName" value="iphone" />
+     </bean>
+    
+     <bean id="messageSource"
+    class="org.springframework.context.support.ResourceBundleMessageSource">
+    <property name="basename" value="messages" />
+  </bean>
+</beans>
+	  
+</project>
